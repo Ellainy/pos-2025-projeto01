@@ -7,5 +7,5 @@
 - Apenas um repositório por dupla.
 
 ## Equipe
-- Nome 1
+- Ellainy
 - Nome 2
