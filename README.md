@@ -8,4 +8,3 @@
 
 ## Equipe
 - Ellainy
-- Nome 2
