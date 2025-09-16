@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boletins - Login SUAP</title>
+    <title>Boletins - Inicio</title>
     <!-- Bootstrap CSS -->
+    <link rel="shortcut icon" href="/image.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,132 +14,135 @@
 </head>
 
 <body>
-    <!-- Página de Boletins -->
-    <div id="grades" class="page">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card-custom">
-                    <div class="card-header-custom">
-                        <h2><i class="fas fa-book me-2"></i>Boletins Acadêmicos</h2>
-                    </div>
-                    <div class="card-body p-4">
-                        <div class="year-selector">
-                            <button class="year-btn" onclick="selectYear(2023)">2023</button>
-                            <button class="year-btn" onclick="selectYear(2022)">2022</button>
-                            <button class="year-btn active" onclick="selectYear(2021)">2021</button>
-                            <button class="year-btn" onclick="selectYear(2020)">2020</button>
-                        </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap me-2"></i>Portal SUAP
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i> Início
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="perfil.html">
+                            <i class="fas fa-user me-1"></i> Perfil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="boletins.html">
+                            <i class="fas fa-book me-1"></i> Boletins
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-sign-out-alt me-1"></i> Sair
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-                        <h4 class="mb-3">Boletim - 2021</h4>
-                        <div class="table-responsive">
-                            <table class="table table-custom table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Disciplina</th>
-                                        <th>1º Bim</th>
-                                        <th>2º Bim</th>
-                                        <th>3º Bim</th>
-                                        <th>4º Bim</th>
-                                        <th>Média</th>
-                                        <th>Faltas</th>
-                                        <th>Situação</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Programação Web</td>
-                                        <td>8.5</td>
-                                        <td>7.0</td>
-                                        <td>9.2</td>
-                                        <td>8.8</td>
-                                        <td>8.4</td>
-                                        <td>2</td>
-                                        <td><span class="badge badge-custom">Aprovado</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Banco de Dados</td>
-                                        <td>6.0</td>
-                                        <td>7.5</td>
-                                        <td>8.0</td>
-                                        <td>7.8</td>
-                                        <td>7.3</td>
-                                        <td>4</td>
-                                        <td><span class="badge badge-custom">Aprovado</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Engenharia de Software</td>
-                                        <td>9.0</td>
-                                        <td>8.5</td>
-                                        <td>9.5</td>
-                                        <td>9.2</td>
-                                        <td>9.1</td>
-                                        <td>1</td>
-                                        <td><span class="badge badge-custom">Aprovado</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Redes de Computadores</td>
-                                        <td>5.5</td>
-                                        <td>6.0</td>
-                                        <td>4.5</td>
-                                        <td>7.0</td>
-                                        <td>5.8</td>
-                                        <td>8</td>
-                                        <td><span class="badge bg-danger">Reprovado</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Inteligência Artificial</td>
-                                        <td>8.0</td>
-                                        <td>8.5</td>
-                                        <td>9.0</td>
-                                        <td>8.7</td>
-                                        <td>8.6</td>
-                                        <td>3</td>
-                                        <td><span class="badge badge-custom">Aprovado</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+    <!-- Conteúdo Principal -->
+    <div class="container my-5">
+        <!-- Página de Boletins -->
+        <div id="grades" class="page active-page">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card-custom">
+                        <div class="card-header-custom">
+                            <h2><i class="fas fa-book me-2"></i>Boletins Acadêmicos</h2>
                         </div>
-
-                        <div class="row mt-4">
-                            <div class="col-md-6">
-                                <div class="card-custom">
-                                    <div class="card-body">
-                                        <h5>Resumo do Semestre</h5>
-                                        <p><strong>CR:</strong> 7.84</p>
-                                        <p><strong>Disciplinas:</strong> 5</p>
-                                        <p><strong>Aprovadas:</strong> 4</p>
-                                        <p><strong>Reprovadas:</strong> 1</p>
-                                    </div>
-                                </div>
+                        <div class="card-body p-4">
+                            <div class="year-selector">
+                                <button class="year-btn" onclick="selectYear(2023)">2023</button>
+                                <button class="year-btn" onclick="selectYear(2022)">2022</button>
+                                <button class="year-btn active" onclick="selectYear(2021)">2021</button>
+                                <button class="year-btn" onclick="selectYear(2020)">2020</button>
                             </div>
-                            <div class="col-md-6">
-                                <div class="card-custom">
-                                    <div class="card-body">
-                                        <h5>Estatísticas</h5>
-                                        <p><strong>Maior nota:</strong> 9.1 (Eng. Software)</p>
-                                        <p><strong>Menor nota:</strong> 5.8 (Redes)</p>
-                                        <p><strong>Total de faltas:</strong> 18</p>
-                                        <p><strong>Frequência:</strong> 87%</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="text-center mt-4">
-                            <button class="btn btn-custom me-2">
-                                <i class="fas fa-download me-1"></i> Exportar Boletim
-                            </button>
-                            <button class="btn btn-outline-light" onclick="showPage('home')">
-                                <i class="fas fa-arrow-left me-1"></i> Voltar
-                            </button>
+                            <h4 class="mb-5 mt-4">Boletim - 2021</h4>
+                            <div class="table-responsive mb-5">
+                                <table class="table table-custom table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Disciplina</th>
+                                            <th>1º Bim</th>
+                                            <th>2º Bim</th>
+                                            <th>3º Bim</th>
+                                            <th>4º Bim</th>
+                                            <th>Média</th>
+                                            <th>Faltas</th>
+                                            <th>Situação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Programação Web</td>
+                                            <td>8.5</td>
+                                            <td>7.0</td>
+                                            <td>9.2</td>
+                                            <td>8.8</td>
+                                            <td>8.4</td>
+                                            <td>2</td>
+                                            <td><span class="badge badge-custom">Aprovado</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Banco de Dados</td>
+                                            <td>6.0</td>
+                                            <td>7.5</td>
+                                            <td>8.0</td>
+                                            <td>7.8</td>
+                                            <td>7.3</td>
+                                            <td>4</td>
+                                            <td><span class="badge badge-custom">Aprovado</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Engenharia de Software</td>
+                                            <td>9.0</td>
+                                            <td>8.5</td>
+                                            <td>9.5</td>
+                                            <td>9.2</td>
+                                            <td>9.1</td>
+                                            <td>1</td>
+                                            <td><span class="badge badge-custom">Aprovado</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Redes de Computadores</td>
+                                            <td>5.5</td>
+                                            <td>6.0</td>
+                                            <td>4.5</td>
+                                            <td>7.0</td>
+                                            <td>5.8</td>
+                                            <td>8</td>
+                                            <td><span class="badge bg-danger">Reprovado</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Inteligência Artificial</td>
+                                            <td>8.0</td>
+                                            <td>8.5</td>
+                                            <td>9.0</td>
+                                            <td>8.7</td>
+                                            <td>8.6</td>
+                                            <td>3</td>
+                                            <td><span class="badge badge-custom">Aprovado</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../static/js/script.js"></script>
