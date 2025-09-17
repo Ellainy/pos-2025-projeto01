@@ -338,17 +338,7 @@ body {
     font-weight: 600;
 }
 
-/* Páginas */
-.page {
-    display: none;
-    padding: 30px 0;
-}
 
-.active-page {
-    display: block;
-}
-
-/* Efeito de brilho tecnológico */
 @keyframes pulse {
     0% { box-shadow: 0 0 5px rgba(139, 0, 0, 0.5); }
     50% { box-shadow: 0 0 20px rgba(139, 0, 0, 0.8); }
@@ -359,7 +349,7 @@ body {
     animation: pulse 4s infinite;
 }
 
-/* Avatar */
+
 .avatar {
     width: 120px;
     height: 120px;
@@ -374,7 +364,7 @@ body {
     color: white;
 }
 
-/* Seleção de ano */
+
 .year-selector {
     display: flex;
     justify-content: center;
@@ -384,9 +374,13 @@ body {
 }
 
 .year-btn {
-    background: rgba(50, 50, 50, 0.7);
-    border: 1px solid rgba(139, 0, 0, 0.3);
-    color: #ccc;
+    background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+    border: none;
+    color: white;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(139, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
     padding: 8px 15px;
     border-radius: 20px;
     transition: all 0.3s;
@@ -396,4 +390,4 @@ body {
     background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
     color: white;
 }
-    
+

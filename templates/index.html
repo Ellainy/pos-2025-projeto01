@@ -49,9 +49,8 @@
         </div>
     </nav>
 
-    <!-- Conteúdo Principal -->
+    <!-- Página Inicial -->
     <div class="container my-5">
-        <!-- Página Inicial -->
         <div id="home" class="page active-page">
             <div class="row justify-content-center">
                 <div class="col-md-10 text-center">
@@ -63,7 +62,7 @@
                             <div class="avatar">
                                 <i class="fas fa-user"></i>
                             </div>
-                            <h3>Olá, Maria Silva!</h3>
+                            <h3>Olá, {{ user.nome }}</h3>
                             <p class="text-white">Acesse suas informações acadêmicas e boletins</p>
 
                             <div class="row mt-4">

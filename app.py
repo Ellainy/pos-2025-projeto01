@@ -38,12 +38,22 @@ class User:
 @app.route('/')
 def index():
     if 'suap_token' in session:
-        return redirect(url_for('user'))
+        return redirect(url_for('inicio'))
     else:
         return render_template('login.html')
 
+@app.route('/inicio/')
+def inicio():
+    if 'suap_token' not in session:
+        return redirect(url_for('index'))
+    else:
+        suap_user = User(oauth)
+        user = suap_user.get_user_data()
+        return render_template('index.html', user=user)
+
+
 @app.route('/perfil/')
-def user():
+def perfil():
     if 'suap_token' not in session:
         return redirect(url_for('index'))
     else:
@@ -51,6 +61,7 @@ def user():
         user = suap_user.get_user_data()
         curso = suap_user.get_curso()
         return render_template('perfil.html', user=user, curso=curso)
+
 
 @app.route("/boletins/", methods=["GET", "POST"])
 def boletim():
@@ -94,4 +105,4 @@ def logout():
 def auth():
     token = oauth.suap.authorize_access_token()
     session['suap_token'] = token
-    return redirect(url_for('user'))
+    return redirect(url_for('inicio'))
