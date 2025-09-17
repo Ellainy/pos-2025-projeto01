@@ -1,150 +1,70 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+{% extends 'base.html' %}
+{% block title %}Boletim de {{ user.nome_usual }}{% endblock title %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boletins - Inicio</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../static/css/style.css">
-</head>
-
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <i class="fas fa-graduation-cap me-2"></i>Portal SUAP
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="fas fa-home me-1"></i> Início
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="perfil.html">
-                            <i class="fas fa-user me-1"></i> Perfil
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="boletins.html">
-                            <i class="fas fa-book me-1"></i> Boletins
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-sign-out-alt me-1"></i> Sair
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Conteúdo Principal -->
-    <div class="container my-5">
-        <!-- Página de Boletins -->
-        <div id="grades" class="page active-page">
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <div class="card-custom">
-                        <div class="card-header-custom">
-                            <h2><i class="fas fa-book me-2"></i>Boletins Acadêmicos</h2>
-                        </div>
-                        <div class="card-body p-4">
-                            <div class="year-selector">
-                                <button class="year-btn" onclick="selectYear(2023)">2023</button>
-                                <button class="year-btn" onclick="selectYear(2022)">2022</button>
-                                <button class="year-btn active" onclick="selectYear(2021)">2021</button>
-                                <button class="year-btn" onclick="selectYear(2020)">2020</button>
+{% block content %}
+<!-- Página de Boletins -->
+<div class="container my-4">
+    <div id="grades" class="page active-page">
+        <div class="row justify-content-center">
+            <div class="col-md-11">
+                <div class="card-custom">
+                    <div class="card-header-custom">
+                        <h2><i class="fas fa-book me-2"></i>Boletins Acadêmicos</h2>
+                    </div>
+                    <div class="card-body p-4">
+                        <form class="w-100" action="{{ url_for('boletim') }}" method="get">
+                            <label for="periodo" class="form-label">Escolha o período:</label>
+                            <div class="input-group mb-3">
+                                <select id="periodo" name="periodo" class="form-select">
+                                    {% for p in periodos %}
+                                    {% set periodo_str = p.ano_letivo|string + '.' + p.periodo_letivo|string %}
+                                    <option value="{{ periodo_str }}" {% if selected_periodo==periodo_str %}selected{%
+                                        endif %}>
+                                        {{ periodo_str }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                                <button type="submit" class="btn btn-outline-danger">
+                                    <i class="fa fa-search fa-sm " style="color: var(--light-red);"></i>
+                                </button>
                             </div>
+                        </form>
 
-                            <h4 class="mb-5 mt-4">Boletim - 2021</h4>
-                            <div class="table-responsive mb-5">
-                                <table class="table table-custom table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Disciplina</th>
-                                            <th>1º Bim</th>
-                                            <th>2º Bim</th>
-                                            <th>3º Bim</th>
-                                            <th>4º Bim</th>
-                                            <th>Média</th>
-                                            <th>Faltas</th>
-                                            <th>Situação</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Programação Web</td>
-                                            <td>8.5</td>
-                                            <td>7.0</td>
-                                            <td>9.2</td>
-                                            <td>8.8</td>
-                                            <td>8.4</td>
-                                            <td>2</td>
-                                            <td><span class="badge badge-custom">Aprovado</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Banco de Dados</td>
-                                            <td>6.0</td>
-                                            <td>7.5</td>
-                                            <td>8.0</td>
-                                            <td>7.8</td>
-                                            <td>7.3</td>
-                                            <td>4</td>
-                                            <td><span class="badge badge-custom">Aprovado</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Engenharia de Software</td>
-                                            <td>9.0</td>
-                                            <td>8.5</td>
-                                            <td>9.5</td>
-                                            <td>9.2</td>
-                                            <td>9.1</td>
-                                            <td>1</td>
-                                            <td><span class="badge badge-custom">Aprovado</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Redes de Computadores</td>
-                                            <td>5.5</td>
-                                            <td>6.0</td>
-                                            <td>4.5</td>
-                                            <td>7.0</td>
-                                            <td>5.8</td>
-                                            <td>8</td>
-                                            <td><span class="badge bg-danger">Reprovado</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Inteligência Artificial</td>
-                                            <td>8.0</td>
-                                            <td>8.5</td>
-                                            <td>9.0</td>
-                                            <td>8.7</td>
-                                            <td>8.6</td>
-                                            <td>3</td>
-                                            <td><span class="badge badge-custom">Aprovado</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="table-responsive mb-5">
+                            <table class="table table-custom table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Disciplina</th>
+                                        <th>Faltas</th>
+                                        <th>1º Bim</th>
+                                        <th>2º Bim</th>
+                                        <th>3º Bim</th>
+                                        <th>4º Bim</th>
+                                        <th>Média</th>
+                                        <th>Situação</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in boletim_data %}
+                                    <tr>
+                                        <td>{{ data.disciplina }}</td>
+                                        <td>{{ data.numero_faltas }}</td>
+                                        <td>{{ data.nota_etapa_1.nota if data.nota_etapa_1.nota else 'N/A' }}</td>
+                                        <td>{{ data.nota_etapa_2.nota if data.nota_etapa_2.nota else 'N/A' }}</td>
+                                        <td>{{ data.nota_etapa_3.nota if data.nota_etapa_3.nota else 'N/A' }}</td>
+                                        <td>{{ data.nota_etapa_4.nota if data.nota_etapa_4.nota else 'N/A' }}</td>
+                                        <td>{{ data.media_final_disciplina if data.media_final_disciplina else 'N/A' }}
+                                        </td>
+                                        <td>{{ data.situacao }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../static/js/script.js"></script>
-</body>
-
-</html>
+</div>
+{% endblock %}
