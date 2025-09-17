@@ -24,7 +24,7 @@ class User:
         self.oauth = oauth
 
     def get_user_data(self):
-        return self.oauth.suap.get('v2/minhas-informacoes/meus-dados').json()
+        return self.oauth.suap.get('rh/eu/').json()
 
     def get_boletim(self, ano_letivo, periodo_letivo):
         return self.oauth.suap.get(f"v2/minhas-informacoes/boletim/{ano_letivo}/{periodo_letivo}/").json()
@@ -32,23 +32,27 @@ class User:
     def get_periodos(self):
         return self.oauth.suap.get("v2/minhas-informacoes/meus-periodos-letivos/").json()
 
+    def get_curso(self):
+        return self.oauth.suap.get("ensino/meus-dados-aluno/").json()
+
 @app.route('/')
 def index():
     if 'suap_token' in session:
         return redirect(url_for('user'))
     else:
-        return render_template('index.html')
+        return render_template('login.html')
 
-@app.route('/user/')
+@app.route('/perfil/')
 def user():
     if 'suap_token' not in session:
         return redirect(url_for('index'))
     else:
         suap_user = User(oauth)
         user = suap_user.get_user_data()
-        return render_template('user.html', user=user)
+        curso = suap_user.get_curso()
+        return render_template('perfil.html', user=user, curso=curso)
 
-@app.route("/boletim/", methods=["GET", "POST"])
+@app.route("/boletins/", methods=["GET", "POST"])
 def boletim():
     if 'suap_token' not in session:
         return redirect(url_for('index'))
@@ -69,7 +73,7 @@ def boletim():
         periodos = suap_user.get_periodos()
 
         return render_template(
-            "boletim.html",
+            "boletins.html",
             user=user,
             boletim_data=boletim,
             periodos=periodos,
